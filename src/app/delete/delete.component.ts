@@ -32,7 +32,7 @@ export class DeleteComponent {
     }
     
     deleteSelectedBook(){
-        this.id = parseInt(document.querySelector('#delete').dataset.id));
+        this.id = parseInt(document.querySelector('#delete').dataset.id););
         this.index = this.books.findIndex(book =>  book.id === this.id);
         this.books.splice(this.index, 1);  
     }

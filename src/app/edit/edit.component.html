@@ -11,7 +11,7 @@
                     <label>Title:</label>
                     <input type="text" name="title" [(ngModel)]="title" id="title" ngModel maxlength="30" required>
                     <label>Author:</label>
-                    <input type="text" name="author" id="author" ngModel required>
+                    <input type="text" name="author" [(ngModel)]="author" id="author" ngModel required>
                     <label>Date:</label>
                     <input type="date" name="date"  id="date" placeholder="xx/xx/xxxx" [max]="today" ngModel required>
                     <label>Image Url:</label>
