@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { BooksComponent } from './books/books.component'
-import {NewBookComponent} from './add/add.component'
+import { NewBookComponent } from './add/add.component'
 
 @Component({
     selector: 'my-app',
     template: `<div class="container">
                    <header>
-                       <h1>My Comic Books</h1>    
+                       <h1>My Comic Books</h1>
                    </header>
                    <my-books></my-books>
                    <my-new-book></my-new-book>
                </div>`,
-    directives: [BooksComponent, NewBookComponent]           
+    // directives: [BooksComponent, NewBookComponent]
 })
 
 export class AppComponent {

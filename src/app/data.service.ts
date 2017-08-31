@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {book} from './book/book';
 import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 
@@ -47,11 +48,19 @@ import {Http} from '@angular/http';
        "date": "1938-06-15",
        "img": "https://upload.wikimedia.org/wikipedia/en/5/5a/Action_Comics_1.jpg"
    }
-] 
+]
 
 
 export class DataService {
-   
+
+    //constructor(private _http: Http){}
+    
+    //getBooks(): Observable<book[]>{
+    //    return this._http
+    //    .get    
+    //}
+    
+    
     getBooks(): book[] {
         return BOOKS;
     }

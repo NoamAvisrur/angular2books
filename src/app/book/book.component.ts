@@ -17,15 +17,17 @@ import {DeleteComponent} from '../delete/delete.component';
                         <Edit-button [master]="book.id" [books]="books"></Edit-button>
                     </div>
             </div>`,
-    directives: [DeleteComponent, EditComponent ],    
-    pipes: [CapitalizePipe]       
+    // directives: [DeleteComponent, EditComponent ],
+    // pipes: [CapitalizePipe]
 })
 
 export class BookComponent implements OnInit{
-   
+
    constructor(private Data: DataService) { }
-    
+
+   books:book[] = [];
+
    ngOnInit(): void {
       this.books = this.Data.getBooks();
-   }  
+   }
 }

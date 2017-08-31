@@ -1,21 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
-
+import {book} from '../book/book';
 
 
 @Component({
     selector: 'my-new-book',
     templateUrl: './add.component.html',
-    directives: [],           
 })
 
 export class NewBookComponent implements OnInit{
    constructor(private Data: DataService) { }
-   
+
    today = new Date().toJSON().split('T')[0];
-   
+
    show = false
-   
+   books: book[] = []
+   newId: number = 0
+
    logForm(value: any){
         var found;
         this.books.forEach(function(book, i){
@@ -27,20 +28,22 @@ export class NewBookComponent implements OnInit{
            console.log('same name');
            this.show = true;
        }else{
-            this.newId = this.books[this.books.length-1].id + 1;
+            if(this.books.length){
+                this.newId = this.books[this.books.length-1].id + 1;
+            }else{this.newId = 1};    
             this.books.push({
                  id: this.newId,
                  title: value.title,
                  author: value.author,
                  date: value.date,
-                 img: value.img     
+                 img: value.img
             });
             $('#Add').modal('hide');
             this.show = false;
-        }    
+        }
     }
-   
+
    ngOnInit(): void {
       this.books = this.Data.getBooks();
-   } 
+   }
 }
