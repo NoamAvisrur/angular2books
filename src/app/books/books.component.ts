@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,Input, OnInit} from '@angular/core';
 import {book} from '../book/book';
 import {BookComponent} from '../book/book.component';
+import { NewBookComponent } from './add/add.component'
 import {DataService} from '../data.service';
 
 
@@ -8,9 +9,11 @@ import {DataService} from '../data.service';
     selector: 'my-books',
     template: `<div class="row">
                    <h2>i have {{books.length}} books in my list</h2>
-                   <my-book></my-book>
-               </div>`,
-    // directives: [BookComponent],
+                   <my-book [books]="books"></my-book>
+               </div>
+               <div class="row">
+                   <my-new-book [books]="books"></my-new-book>  
+               </div>`
 })
 
 export class BooksComponent implements OnInit{
@@ -18,7 +21,13 @@ export class BooksComponent implements OnInit{
 
    books:book[] = []
 
-   ngOnInit(): void {
-      this.books = this.Data.getBooks();
+   ngOnInit(){
+       this.getBooks();
+   }
+
+   getBooks(){
+       this.Data.getBooks().subscribe(
+           books => this.books = books
+       );
    }
 }

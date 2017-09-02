@@ -1,5 +1,5 @@
-    <button type="button" class="button" (click)="setInfo()" id="editButton" data-toggle="modal" [attr.data-target]="'#id'+i">Edit</button>
-        <div [id]="'id'+i" class="modal fade" role="dialog">
+    <button type="button" class="button" (click)="setInfo()" id="editButton" data-toggle="modal" [attr.data-target]="'#edit'+i">Edit</button>
+        <div [id]="'edit'+i" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -16,6 +16,7 @@
                     <input type="date" name="date"  id="date" [ngModel]="date" [max]="today" ngModel required>
                     <label>Image Url:</label>
                     <input type="text" name="img" id="img" [ngModel]="img" placeholder="http://...jpg" ngModel required>
+                    <div *ngIf="show" class="alerts">title already exist</div>
                     <button type="submit" class="btn btn-default">Edit</button>
                 </form>
             </div>

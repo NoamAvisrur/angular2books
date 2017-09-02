@@ -10,7 +10,9 @@ export class EditComponent{
 
     @Input('master') i: number;
     @Input('books') books;
-
+    
+    show = false;
+    
     index: number;
     title:string;
     author:string;
@@ -28,13 +30,23 @@ export class EditComponent{
     }
     
     logForm(value: any){
-           console.log(value);
-           this.books[this.index].title = value.title;
-           this.books[this.index].author = value.author;
-           this.books[this.index].date = value.date;
-           this.books[this.index].img = value.img;
-           var selector = '#id' + this.i;
-           $(selector).modal('hide');
+        var found;
+        this.books.forEach(function(book, i){
+            if(book.title == value.title && this.title !== value.title ){
+                found = true;
+            }
+        }.bind(this));
+        if(found){
+            this.show = true;
+            console.log(found);
+        }else{
+             this.books[this.index].title = value.title;
+             this.books[this.index].author = value.author;
+             this.books[this.index].date = value.date;
+             this.books[this.index].img = value.img;
+             var selector = '#edit' + this.i;
+             $(selector).modal('hide');
+             this.show = false;
         }
     }
 }

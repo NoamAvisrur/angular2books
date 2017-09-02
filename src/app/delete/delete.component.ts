@@ -3,8 +3,8 @@ import {book} from '../book/book';
 
 @Component({
     selector: 'Delete-button',
-    template: `<button  type="button" class="button" data-toggle="modal" [attr.data-target]="'#id'+i">Delete</button>
-              <div [id]="'id'+i" class="modal fade" role="dialog">
+    template: `<button  type="button" class="button" data-toggle="modal" [attr.data-target]="'#delete'+i">Delete</button>
+              <div [id]="'delete'+i" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -29,7 +29,6 @@ export class DeleteComponent {
     @Input('books') books: [book];
 
     deleteSelectedBook(){
-        console.log(this);
         this.index = this.books.findIndex(book =>  book.id === this.i);
         this.books.splice(this.index, 1);
     }

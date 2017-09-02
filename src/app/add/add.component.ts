@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import {book} from '../book/book';
-
 
 @Component({
     selector: 'my-new-book',
@@ -11,6 +10,8 @@ import {book} from '../book/book';
 export class NewBookComponent implements OnInit{
    constructor(private Data: DataService) { }
 
+   @Input('books') books;
+   
    today = new Date().toJSON().split('T')[0];
 
    show = false
@@ -25,7 +26,6 @@ export class NewBookComponent implements OnInit{
             }
         })
        if(found){
-           console.log('same name');
            this.show = true;
        }else{
             if(this.books.length){
@@ -42,8 +42,4 @@ export class NewBookComponent implements OnInit{
             this.show = false;
         }
     }
-
-   ngOnInit(): void {
-      this.books = this.Data.getBooks();
-   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,Input, OnInit} from '@angular/core';
 import {book} from './book';
 import {DataService} from '../data.service';
 import {EditComponent} from '../edit/edit.component';
@@ -16,18 +16,11 @@ import {DeleteComponent} from '../delete/delete.component';
                         <Delete-button [master]="book.id" [books]="books"></Delete-button>
                         <Edit-button [master]="book.id" [books]="books"></Edit-button>
                     </div>
-            </div>`,
-    // directives: [DeleteComponent, EditComponent ],
-    // pipes: [CapitalizePipe]
+            </div>`
 })
 
 export class BookComponent implements OnInit{
-
-   constructor(private Data: DataService) { }
-
-   books:book[] = [];
-
-   ngOnInit(): void {
-      this.books = this.Data.getBooks();
-   }
+   
+   @Input('books') books;
+   
 }
