@@ -1,30 +1,31 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DataService} from '../data.service';
 import {book} from '../book/book';
 
+declare const jQuery: any;
+
 @Component({
     selector: 'my-new-book',
-    templateUrl: './add.component.html',
+    templateUrl: './add.component.html'
 })
 
-export class NewBookComponent implements OnInit{
+export class NewBookComponent{
    constructor(private Data: DataService) { }
 
-   @Input('books') books;
+   @Input('books') books: book[];
    
    today = new Date().toJSON().split('T')[0];
 
-   show = false
-   books: book[] = []
-   newId: number = 0
+   show = false;
+   newId: number = 0;
 
    logForm(value: any){
-        var found;
+        let found;
         this.books.forEach(function(book, i){
             if(book.title == value.title){
                 found = true;
-            }
-        })
+            };
+        });
        if(found){
            this.show = true;
        }else{
@@ -38,8 +39,8 @@ export class NewBookComponent implements OnInit{
                  date: value.date,
                  img: value.img
             });
-            $('#Add').modal('hide');
+            jQuery('#Add').modal('hide');
             this.show = false;
-        }
-    }
-}
+        };
+    };
+};

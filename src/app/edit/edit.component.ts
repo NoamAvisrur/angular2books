@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {book} from '../book/book';
 
+declare const jQuery: any;
+
 @Component({
     selector: 'Edit-button',
     templateUrl: './edit.component.html'
@@ -9,14 +11,15 @@ import {book} from '../book/book';
 export class EditComponent{
 
     @Input('master') i: number;
-    @Input('books') books;
+    @Input('books') books: book[];
     
-    show = false;
+    show: boolean = false;
     
     index: number;
     title:string;
     author:string;
     img:string;
+    date:string;
     
     today = new Date().toJSON().split('T')[0];
 
@@ -26,15 +29,14 @@ export class EditComponent{
         this.author = this.books[this.index].author;
         this.date = this.books[this.index].date;
         this.img = this.books[this.index].img;
-        console.log(this);
-    }
+    };
     
     logForm(value: any){
-        var found;
-        this.books.forEach(function(book, i){
+        let found;
+        this.books.forEach(function(book: book, i:number){
             if(book.title == value.title && this.title !== value.title ){
                 found = true;
-            }
+            };
         }.bind(this));
         if(found){
             this.show = true;
@@ -44,9 +46,9 @@ export class EditComponent{
              this.books[this.index].author = value.author;
              this.books[this.index].date = value.date;
              this.books[this.index].img = value.img;
-             var selector = '#edit' + this.i;
-             $(selector).modal('hide');
+             let selector = '#edit' + this.i;
+             jQuery(selector).modal('hide');
              this.show = false;
-        }
-    }
-}
+        };
+    };
+};
